@@ -1,0 +1,9 @@
+####{BSB GENERATED: NO EDIT
+FLG -ppx /Users/jaredramirez/dev/src/github.com/jaredramirez/reason-elm-example/node_modules/bs-platform/lib/bsppx.exe
+S /Users/jaredramirez/dev/src/github.com/jaredramirez/reason-elm-example/node_modules/bs-platform/lib/ocaml
+B /Users/jaredramirez/dev/src/github.com/jaredramirez/reason-elm-example/node_modules/bs-platform/lib/ocaml
+FLG -nostdlib -no-alias-deps -color always
+FLG -w -30-40+6+7+27+32..39+44+45+101
+S src/reason
+B lib/bs/src/reason
+####BSB GENERATED: NO EDIT}

@@ -1,0 +1,8 @@
+{
+  "name": "hello-world",
+  "reason": {},
+  "refmt": 3,
+  "bs-dependencies": [],
+  "sources": {"dir": "src/reason", "subdirs": true},
+  "bsc-flags": ["-bs-super-errors"]
+}
