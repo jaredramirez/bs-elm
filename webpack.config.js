@@ -9,7 +9,7 @@ const resolvePath = relativePath => path.resolve(__dirname, relativePath);
 module.exports = {
   devtool: 'cheap-module-source-map',
 
-  entry: [resolvePath('src/reason/index.re'), resolvePath('src/main.js')],
+  entry: resolvePath('src/reason/index.re'),
 
   output: {
     path: resolvePath('lib'),
@@ -18,19 +18,18 @@ module.exports = {
 
   module: {
     rules: [
-      {test: /\.(js|jsx)$/, use: 'babel-loader'},
+      {test: /\.(js|jsx)$/, use: require.resolve('babel-loader')},
       {
         test: /\.(re|ml)$/,
         include: resolvePath('src/reason'),
         exclude: [/elm-stuff/, /node_modules/],
-        use: 'bs-loader',
+        use: require.resolve('bs-loader'),
       },
       {
         test: /\.elm$/,
-        include: resolvePath('src/elm'),
         exclude: [/elm-stuff/, /node_modules/],
         use: {
-          loader: 'elm-loader',
+          loader: require.resolve('elm-webpack-loader'),
           options: {
             cwd: resolvePath('.'),
             forceWatch: true,
