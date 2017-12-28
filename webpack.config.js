@@ -9,7 +9,7 @@ const resolvePath = relativePath => path.resolve(__dirname, relativePath);
 module.exports = {
   devtool: 'cheap-module-source-map',
 
-  entry: resolvePath('src/reason/index.re'),
+  entry: resolvePath('src/reason/Main.re'),
 
   output: {
     path: resolvePath('lib'),
