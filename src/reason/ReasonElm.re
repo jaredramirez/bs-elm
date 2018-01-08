@@ -1,48 +1,74 @@
-open Js.Result;
+module R = Js.Result;
 
-/* Elm Types */
-type elmInstance = {. ports: string};
+module D = Js.Dict;
 
-type elmModule = {
-  .
-  [@bs.meth] "fullscreen": unit => elmInstance,
-  [@bs.meth] "embed": Dom.element => elmInstance
-};
-
-type elmApp = Js.Dict.t(elmModule);
+module O = Js.Option;
 
 /* DOM Manipulation */
-[@bs.val]
-external unsafeGetElementById : string => Js.null(Dom.element) =
-  "document.getElementById";
+[@bs.val] [@bs.return nullable] [@bs.scope "document"]
+external getElementById : string => option(Dom.element) = "getElementById";
 
-let getElementById = (id: string) =>
-  id |> unsafeGetElementById |> Js.Null.to_opt;
+/* Elm Type */
+type elmModule;
 
-/* Make */
-let make = (~elmApp: elmApp, ~moduleName: string, ~elementId=?, ()) => {
-  let maybeElmModule = Js.Dict.get(elmApp, moduleName);
-  switch maybeElmModule {
-  | Some(elmModule) =>
-    switch elementId {
-    | Some(id) =>
-      let maybeElement = getElementById(id);
-      switch maybeElement {
-      | Some(element) => Ok(elmModule##embed(element))
-      | None =>
-        Error(
-          "ReasonElm Error: Failed to DOM find element named '"
-          ++ id
-          ++ "' to embed."
-        )
-      };
-    | None => Ok(elmModule##fullscreen())
-    }
-  | None =>
-    Error(
-      "ReasonElm Error: Failed to find elm module named '"
-      ++ moduleName
-      ++ "'."
+type elmInstance;
+
+/* Elm Module External Functions */
+[@bs.send] external fullscreen : elmModule => elmInstance = "";
+
+[@bs.send]
+external fullscreenWithFlags : (elmModule, 'flags) => elmInstance =
+  "fullscreen";
+
+[@bs.send] external embed : (elmModule, Dom.element) => elmInstance = "";
+
+[@bs.send]
+external embedWithFlags : (elmModule, Dom.element, 'flags) => elmInstance =
+  "embed";
+
+type elmProgram = D.t(elmModule);
+
+/* Mount */
+let mountHelper =
+    (
+      maybeFlags: option('flags),
+      maybeElementId: option(string),
+      module_: elmModule
     )
+    : R.t(elmInstance, string) =>
+  switch maybeElementId {
+  | Some(elementId) =>
+    let maybeElement = getElementById(elementId);
+    switch maybeElement {
+    | Some(element) =>
+      switch maybeFlags {
+      | Some(flags) => R.Ok(embedWithFlags(module_, element, flags))
+      | None => R.Ok(embed(module_, element))
+      }
+    | None =>
+      R.Error(
+        "ReasonElm Error: Failed to DOM find element named '"
+        ++ elementId
+        ++ "' to embed."
+      )
+    };
+  | None =>
+    switch maybeFlags {
+    | Some(flags) => R.Ok(fullscreenWithFlags(module_, flags))
+    | None => R.Ok(fullscreen(module_))
+    }
+  };
+
+let mount =
+    (
+      ~flags: option('flags)=?,
+      ~elementId: option(string)=?,
+      elmProgram: elmProgram
+    )
+    : R.t(elmInstance, string) => {
+  let maybeModule = D.get(elmProgram, "Main");
+  switch maybeModule {
+  | Some(m) => mountHelper(flags, elementId, m)
+  | None => R.Error("Module not found.")
   };
 };

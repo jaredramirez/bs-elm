@@ -1,18 +1,34 @@
-module Main exposing (..)
+port module Main exposing (..)
 
-import Html exposing (Html, div, text, program)
+import Html exposing (Html, div, button, text)
+import Html.Events as Events
+import Json.Encode as Encode
+import Json.Decode as Decode
 
 
 -- MODEL
 
 
 type alias Model =
-    String
+    { hello : String
+    , todos : List Todo
+    }
 
 
-init : ( Model, Cmd Msg )
-init =
-    ( "Hello", Cmd.none )
+type alias Todo =
+    { text : String
+    , isComplete : Bool
+    }
+
+
+type alias Flags =
+    { hello : String
+    }
+
+
+init : Flags -> ( Model, Cmd Msg )
+init flags =
+    { hello = flags.hello, todos = [] } ! []
 
 
 
@@ -20,7 +36,7 @@ init =
 
 
 type Msg
-    = NoOp
+    = CreateNewTodo
 
 
 
@@ -30,7 +46,9 @@ type Msg
 view : Model -> Html Msg
 view model =
     div []
-        [ text model ]
+        [ button [ Events.onClick CreateNewTodo ] [ text "press" ]
+        , text "hello"
+        ]
 
 
 
@@ -40,8 +58,45 @@ view model =
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        NoOp ->
-            ( model, Cmd.none )
+        CreateNewTodo ->
+            model
+                ! [ sendInfoToReason <|
+                        AddTodo
+                            { text = "foo", isComplete = False }
+                  ]
+
+
+
+-- PORTS
+
+
+todoEncoder : Todo -> Encode.Value
+todoEncoder todo =
+    Encode.object
+        [ ( "text", Encode.string todo.text )
+        , ( "isComplete", Encode.bool todo.isComplete )
+        ]
+
+
+type ReasonInfo
+    = AddTodo Todo
+
+
+sendInfoToReason : ReasonInfo -> Cmd msg
+sendInfoToReason info =
+    infoForReason <|
+        case info of
+            AddTodo todo ->
+                { tag = "addTodo", payload = todoEncoder todo }
+
+
+type alias Info =
+    { tag : String
+    , payload : Encode.Value
+    }
+
+
+port infoForReason : Info -> Cmd msg
 
 
 
@@ -57,9 +112,9 @@ subscriptions model =
 -- MAIN
 
 
-main : Program Never Model Msg
+main : Program Flags Model Msg
 main =
-    program
+    Html.programWithFlags
         { init = init
         , view = view
         , update = update

@@ -1,9 +1,10 @@
-[@bs.module] external elmApp : ReasonElm.elmApp = "../elm/Main.elm";
+module R = Js.Result;
 
-let instance = ReasonElm.make(~elmApp, ~moduleName="Main", ());
+[@bs.module] external elmProgram : ReasonElm.elmProgram = "../elm/Main.elm";
 
-Js.log(instance);
-/* switch instance { */
-/* | Some(i) => Js.log(i##ports) */
-/* | None => () */
-/* }; */
+let instance = ReasonElm.mount(~flags={"hello": "world"}, elmProgram);
+
+switch instance {
+| R.Ok(i) => Js.log(i)
+| R.Error(message) => Js.log(message)
+};

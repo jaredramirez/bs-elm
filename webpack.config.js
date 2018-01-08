@@ -20,7 +20,7 @@ module.exports = {
     rules: [
       {test: /\.(js|jsx)$/, use: require.resolve('babel-loader')},
       {
-        test: /\.(re|ml)$/,
+        test: /\.(re|rei)$/,
         include: resolvePath('src/reason'),
         exclude: [/elm-stuff/, /node_modules/],
         use: require.resolve('bs-loader'),
@@ -41,7 +41,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.js', '.jsx', '.re', '.ml', '.elm'],
+    extensions: ['.js', '.jsx', '.re', '.rei', '.elm'],
   },
 
   plugins: [
