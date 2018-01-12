@@ -8,34 +8,47 @@ module O = Js.Option;
 [@bs.val] [@bs.return nullable] [@bs.scope "document"]
 external getElementById : string => option(Dom.element) = "getElementById";
 
-/* Elm Type */
-type elmModule;
+/* Elm Types */
+type elmModule('instance);
 
-type elmInstance;
+type elmProgramBase('instance) = D.t(elmModule('instance));
+
+type elmProgram = elmProgramBase({.});
+
+type elmProgramWithPorts('ports) = elmProgramBase({. "ports": 'ports});
 
 /* Elm Module External Functions */
-[@bs.send] external fullscreen : elmModule => elmInstance = "";
+[@bs.send] external fullscreen : elmModule('instance) => 'instance = "";
 
 [@bs.send]
-external fullscreenWithFlags : (elmModule, 'flags) => elmInstance =
+external fullscreenWithFlags : (elmModule('instance), 'flags) => 'instance =
   "fullscreen";
 
-[@bs.send] external embed : (elmModule, Dom.element) => elmInstance = "";
+[@bs.send]
+external embed : (elmModule('instance), Dom.element) => 'instance = "";
 
 [@bs.send]
-external embedWithFlags : (elmModule, Dom.element, 'flags) => elmInstance =
+external embedWithFlags :
+  (elmModule('instance), Dom.element, 'flags) => 'instance =
   "embed";
 
-type elmProgram = D.t(elmModule);
+/* Ports Helper Types */
+type elmInPort('data) = {
+  .
+  [@bs.meth] "subscribe": ('data => unit) => unit,
+  [@bs.meth] "unsubscribe": unit => unit
+};
 
-/* Mount */
+type elmOutPort('data) = {. [@bs.meth] "send": 'data => unit};
+
+/* Mount Program Functions*/
 let mountHelper =
     (
       maybeFlags: option('flags),
       maybeElementId: option(string),
-      module_: elmModule
+      module_: elmModule('instance)
     )
-    : R.t(elmInstance, string) =>
+    : R.t('instance, string) =>
   switch maybeElementId {
   | Some(elementId) =>
     let maybeElement = getElementById(elementId);
@@ -63,12 +76,12 @@ let mount =
     (
       ~flags: option('flags)=?,
       ~elementId: option(string)=?,
-      elmProgram: elmProgram
+      elmProgram: elmProgramBase('instance)
     )
-    : R.t(elmInstance, string) => {
+    : R.t('instance, string) => {
   let maybeModule = D.get(elmProgram, "Main");
   switch maybeModule {
-  | Some(m) => mountHelper(flags, elementId, m)
+  | Some(module_) => mountHelper(flags, elementId, module_)
   | None => R.Error("Module not found.")
   };
 };
