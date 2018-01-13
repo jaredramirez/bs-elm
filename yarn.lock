@@ -5,7 +5,3 @@
 bs-platform@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/bs-platform/-/bs-platform-2.1.0.tgz#63560ff8f7142c9c0631559df1c35590b9f6d8b2"
-
-bs-react-router@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/bs-react-router/-/bs-react-router-1.1.1.tgz#fcbeaea024bd1621624f54ba82ee64666d79b0b1"
