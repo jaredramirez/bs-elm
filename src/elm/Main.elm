@@ -1,6 +1,7 @@
 port module Main exposing (..)
 
-import Html exposing (Html, div, button, text)
+import Html exposing (Html)
+import Html.Attributes as Attrs
 import Html.Events as Events
 import Json.Encode as Encode
 import Json.Decode as Decode
@@ -10,25 +11,22 @@ import Json.Decode as Decode
 
 
 type alias Model =
-    { hello : String
-    , todos : List Todo
-    }
-
-
-type alias Todo =
-    { text : String
-    , isComplete : Bool
+    { title : String
+    , response : Maybe String
     }
 
 
 type alias Flags =
-    { hello : String
+    { title : String
     }
 
 
 init : Flags -> ( Model, Cmd Msg )
 init flags =
-    { hello = flags.hello, todos = [] } ! []
+    { title = flags.title
+    , response = Nothing
+    }
+        ! []
 
 
 
@@ -36,7 +34,8 @@ init flags =
 
 
 type Msg
-    = CreateNewTodo
+    = SendToReason String
+    | GetFromReason String
 
 
 
@@ -45,9 +44,19 @@ type Msg
 
 view : Model -> Html Msg
 view model =
-    div []
-        [ button [ Events.onClick CreateNewTodo ] [ text "press" ]
-        , text "hello"
+    Html.div
+        [ Attrs.style
+            [ ( "display", "flex" )
+            , ( "flex-direction", "column" )
+            , ( "width", "500px" )
+            ]
+        ]
+        [ Html.h2 [] [ Html.text model.title ]
+        , Html.button [ Events.onClick <| SendToReason "Button 1" ]
+            [ Html.text "Button 1" ]
+        , Html.button [ Events.onClick <| SendToReason "Button 2" ]
+            [ Html.text "Button 2" ]
+        , Html.span [] [ Html.text <| Maybe.withDefault "" model.response ]
         ]
 
 
@@ -58,45 +67,21 @@ view model =
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        CreateNewTodo ->
-            model
-                ! [ sendInfoToReason <|
-                        AddTodo
-                            { text = "foo", isComplete = False }
-                  ]
+        SendToReason message ->
+            model ! [ infoForReason message ]
+
+        GetFromReason s ->
+            { model | response = Just s } ! []
 
 
 
 -- PORTS
 
 
-todoEncoder : Todo -> Encode.Value
-todoEncoder todo =
-    Encode.object
-        [ ( "text", Encode.string todo.text )
-        , ( "isComplete", Encode.bool todo.isComplete )
-        ]
+port infoForReason : String -> Cmd msg
 
 
-type ReasonInfo
-    = AddTodo Todo
-
-
-sendInfoToReason : ReasonInfo -> Cmd msg
-sendInfoToReason info =
-    infoForReason <|
-        case info of
-            AddTodo todo ->
-                { tag = "addTodo", payload = todoEncoder todo }
-
-
-type alias Info =
-    { tag : String
-    , payload : Encode.Value
-    }
-
-
-port infoForReason : Info -> Cmd msg
+port infoForElm : (String -> msg) -> Sub msg
 
 
 
@@ -105,7 +90,7 @@ port infoForReason : Info -> Cmd msg
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    Sub.none
+    infoForElm GetFromReason
 
 
 

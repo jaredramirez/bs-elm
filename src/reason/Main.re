@@ -1,50 +1,26 @@
 module R = Js.Result;
 
 /* PORTS */
-type infoForReasonPayload;
-
-external infoForReasonPayloadToTodo :
-  infoForReasonPayload =>
-  {
-    .
-    "text": string,
-    "isComplete": bool
-  } =
-  "%identity";
-
-type infoForReasonTag = [ | [@bs.as "addTodo"] `AddTodo];
-
 type ports = {
   .
-  "infoForReason":
-    ReasonElm.elmInPort(
-      {
-        .
-        "tag": infoForReasonTag,
-        "payload": infoForReasonPayload
-      }
-    )
+  "infoForReason": ReasonElm.elmInPort(string),
+  "infoForElm": ReasonElm.elmOutPort(string)
 };
 
 /* ELM PROGRAM */
 [@bs.module]
 external elmProgram : ReasonElm.elmProgramWithPorts(ports) = "../elm/Main.elm";
 
-let instance = ReasonElm.mount(~flags={"hello": "world"}, elmProgram);
+let instance =
+  ReasonElm.mount(
+    ~flags={"title": "Buttons (title set in Reason via flags)"},
+    elmProgram
+  );
 
 switch instance {
 | R.Ok(i) =>
-  i##ports##infoForReason##subscribe(info => {
-    let tag = info##tag;
-    switch tag {
-    | `AddTodo =>
-      let payload = infoForReasonPayloadToTodo(info##payload);
-      Js.log(payload##text);
-      Js.log(payload##isComplete);
-      ();
-    };
-    ();
-  });
-  ();
+  let infoForReason = i##ports##infoForReason;
+  let infoForElm = i##ports##infoForElm;
+  infoForReason##subscribe(info => infoForElm##send("You pressed " ++ info));
 | R.Error(message) => Js.log(message)
 };

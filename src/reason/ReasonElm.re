@@ -37,7 +37,7 @@ type elmInPort('data) = {
   [@bs.meth] "unsubscribe": unit => unit
 };
 
-type elmOutPort('data) = {. "send": 'data => unit};
+type elmOutPort('data) = {. [@bs.meth] "send": 'data => unit};
 
 /* Elm Program Types */
 type elmProgramBase('instance) = D.t(elmModule('instance));
