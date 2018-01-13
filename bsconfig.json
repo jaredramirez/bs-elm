@@ -1,8 +1,6 @@
 {
-  "name": "hello-world",
-  "reason": {},
+  "name": "reason-elm",
   "refmt": 3,
-  "bs-dependencies": [],
-  "sources": {"dir": "src/reason", "subdirs": true},
-  "bsc-flags": ["-bs-super-errors"]
+  "sources": "src",
+  "bsc-flags": ["-bs-no-version-header"]
 }

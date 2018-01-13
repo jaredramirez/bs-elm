@@ -1,21 +1,29 @@
 {
-  "name": "parcel-hello-world",
-  "version": "1.0.0",
-  "license": "MIT",
+  "name": "reason-elm",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "webpack": "node_modules/.bin/webpack",
-    "webpack:watch": "yarn webpack --watch",
-    "webpack:serve": "node_modules/.bin/webpack-dev-server"
+    "bsb": "node_modules/.bin/bsb",
+    "build": "yarn bsb -make-world",
+    "start": "yarn bsb -make-world -w",
+    "clean": "yarn bsb -clean-world"
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "bs-loader": "1.8.0",
-    "bs-platform": "^2.1.0",
-    "elm-webpack-loader": "^4.4.0",
-    "html-webpack-plugin": "^2.30.1",
-    "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.9.7"
+    "bs-platform": "^2.1.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "bs-react-router": "^1.1.1"
+  },
+  "license": "MIT",
+  "keywords": [
+    "reasonml",
+    "bucklescript",
+    "elm"
+  ],
+  "author": "Jared Ramirez <jaredramirez@me.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaredramirez/reason-elm.git"
+  }
 }

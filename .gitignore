@@ -1,6 +1,10 @@
-elm-stuff
-node_modules
-lib
-dist
-
 .cache
+
+/examples
+.DS_Store
+/node_modules*
+.merlin
+/lib/bs/
+/lib/ocaml/
+*.log
+.bsb.lock
