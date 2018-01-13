@@ -8,16 +8,9 @@ module O = Js.Option;
 [@bs.val] [@bs.return nullable] [@bs.scope "document"]
 external getElementById : string => option(Dom.element) = "getElementById";
 
-/* Elm Types */
+/* Elm Module */
 type elmModule('instance);
 
-type elmProgramBase('instance) = D.t(elmModule('instance));
-
-type elmProgram = elmProgramBase({.});
-
-type elmProgramWithPorts('ports) = elmProgramBase({. "ports": 'ports});
-
-/* Elm Module External Functions */
 [@bs.send] external fullscreen : elmModule('instance) => 'instance = "";
 
 [@bs.send]
@@ -32,6 +25,11 @@ external embedWithFlags :
   (elmModule('instance), Dom.element, 'flags) => 'instance =
   "embed";
 
+/* Elm Instance Types */
+type elmInstanceWithPorts('ports) = {. "ports": 'ports};
+
+type elmInstance = {.};
+
 /* Ports Helper Types */
 type elmInPort('data) = {
   .
@@ -39,7 +37,15 @@ type elmInPort('data) = {
   [@bs.meth] "unsubscribe": unit => unit
 };
 
-type elmOutPort('data) = {. [@bs.meth] "send": 'data => unit};
+type elmOutPort('data) = {. "send": 'data => unit};
+
+/* Elm Program Types */
+type elmProgramBase('instance) = D.t(elmModule('instance));
+
+type elmProgram = elmProgramBase(elmInstance);
+
+type elmProgramWithPorts('ports) =
+  elmProgramBase(elmInstanceWithPorts('ports));
 
 /* Mount Program Functions*/
 let mountHelper =
