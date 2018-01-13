@@ -47,7 +47,7 @@ type elmProgram = elmProgramBase(elmInstance);
 type elmProgramWithPorts('ports) =
   elmProgramBase(elmInstanceWithPorts('ports));
 
-/* Mount Program Functions*/
+/* Mount Program */
 let mountHelper =
     (
       maybeFlags: option('flags),
