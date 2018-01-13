@@ -26,6 +26,7 @@ let mount:
   (
     ~flags: 'flags=?,
     ~elementId: string=?,
+    ~moduleName: string=?,
     elmProgramBase('instance)
   )
   => R.t('instance, string);

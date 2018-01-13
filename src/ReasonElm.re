@@ -91,10 +91,11 @@ let mount =
     (
       ~flags: option('flags)=?,
       ~elementId: option(string)=?,
+      ~moduleName: string="Main",
       elmProgram: elmProgramBase('instance)
     )
     : R.t('instance, string) => {
-  let maybeModule = D.get(elmProgram, "Main");
+  let maybeModule = D.get(elmProgram, moduleName);
   switch maybeModule {
   | Some(module_) => mountHelper(flags, elementId, module_)
   | None => R.Error("Module not found.")
