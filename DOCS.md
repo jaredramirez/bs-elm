@@ -60,6 +60,8 @@ This is the function that takes either [`elmProgram`](DOCS.md#elmProgram) or [`e
 There are a few important things to note with `mount`:
   * If you use any of the labled aruements, `elmProgram` must be the last arguement
   * The arguement `moduleName` defaults to `"Main"`
+  * If the `elementId` is invalid, the mounting will fail. ReasonElm DOES NOT fallback to fullscreen.
+
 It's type signature is:
 ```
 let mount:

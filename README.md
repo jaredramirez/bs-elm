@@ -13,21 +13,18 @@ JS interop with Reason, is pretty powerful. Having access to the entire JS
 ecosytem in a (more) typesafe way is pretty exciting, and so Reason-Elm was created.
 
 ### Getting Started
-Install with yarn:
-`yarn add reason-elm`
-
-Install with npm:
-`npm install --save reason-elm`
-
-Add `reason-elm` as a dependency in `bsconfig.json`
+* Install
+  * With yarn: `yarn add reason-elm`
+  * With npm: `npm install --save reason-elm`
+* Add `reason-elm` as a dependency in `bsconfig.json`
 ```
 {
   ...
-  "bs-dependencies": ["reason-elm", ...],
+  "bs-dependencies": ["reason-elm"]
 }
 ```
 
-Use `ReasonElm` :
+* Use `ReasonElm` (To import Elm directly in Reason take a look at [this](https://github.com/jaredramirez/reason-elm-example)):
 ```
 module R = Js.Result;
 
