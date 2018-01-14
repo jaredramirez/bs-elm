@@ -45,10 +45,17 @@ switch instance {
 Checkout an [example](https://github.com/jaredramirez/reason-elm-example)!
 
 ### Docs
-TODO
+* [`elmProgramBase : type`](DOCS.md#elmProgramBase)
+* [`elmProgram : type`](DOCS.md#elmProgram)
+* [`elmProgramWithPorts : type`](DOCS.md#elmProgramWithPorts)
+* [`elmInPort : type`](DOCS.md#elmInPort)
+* [`elmOutPort : type`](DOCS.md#elmOutPort)
+* [`elmInstance : type`](DOCS.md#elmInstance)
+* [`elmInstanceWithPorts : type`](DOCS.md#elmInstanceWithPorts)
+* [`mount : func`](DOCS.md#mount)
 
 ### Roadmap
 * Support nested elm module
   * Currently only `Elm.Module` is supported. (`Elm.My.Module` will not work)
-* Convert Js.t objects to OCaml records
-  * Currently the elm app instance, ports, etc are Js.t objects
+* Convert `Js.t` objects to OCaml records
+  * Currently the Elm 'instance & 'ports are `Js.t` objects
