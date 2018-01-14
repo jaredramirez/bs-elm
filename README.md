@@ -3,10 +3,10 @@
 
 ### Motivation
 Writing web applications in Elm is nice. It's type system and enforced architecture
-are just a couple of the really cool things that offers. The Elm ecosystem is
+are just a couple of the really cool things that it offers. The Elm ecosystem is
 pretty small compared to the Javascript(JS) ecosystem, and this is a draw back
 when coming from the world of JS. Interop with JS is possible, but it requires
-writing regular JS code, which has none of the safely of Elm. This is where Reason
+writing regular JS code, which has none of Elm's safety. This is where Reason
 enters the picture. Reason can communicate more direclty with JS, with much more
 type safety than vanilla JS. The possibility of writing an Elm app, and handling
 JS interop with Reason, is pretty powerful. Having access to the entire JS
@@ -52,7 +52,7 @@ Checkout an [example](https://github.com/jaredramirez/reason-elm-example)!
 * [`mount : func`](DOCS.md#mount)
 
 ### Roadmap
-* Support nested elm module
+* Support nested elm modules
   * Currently only `Elm.Module` is supported. (`Elm.My.Module` will not work)
 * Convert `Js.t` objects to OCaml records
   * Currently the Elm 'instance & 'ports are `Js.t` objects
