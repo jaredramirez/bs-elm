@@ -1,6 +1,7 @@
 {
   "name": "reason-elm",
+  "version": "0.0.3",
   "refmt": 3,
   "sources": "src",
-  "bsc-flags": ["-bs-no-version-header"]
+  "package-specs": ["commonjs"]
 }
