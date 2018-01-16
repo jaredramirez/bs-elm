@@ -3,7 +3,7 @@
 <a name="elmProgramBase"></a>
 ### `elmProgramBase('instance) : type`
 Type to represent the compiled & imported version of an Elm application. It has
-an arugement `'instance`, that is the shape of the running elm application.
+an arugement `'instance`, that is the shape of the elm application instance.
 
 <a name="elmProgram"></a>
 ### `elmProgram : type`
