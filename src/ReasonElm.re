@@ -57,7 +57,7 @@ type elmProgramWithPorts('ports) =
 
 /* Used to get modules from elmProgramBase */
 [@bs.module] [@bs.return nullable]
-external getValueFromPath :
+external getModuleFromPath :
   (elmProgramBase('instance), string) => option(elmModule('instance)) =
   "lodash.get";
 
@@ -101,7 +101,7 @@ let mount =
       elmProgram: elmProgramBase('instance)
     )
     : R.t('instance, string) => {
-  let maybeModule = getValueFromPath(elmProgram, moduleName);
+  let maybeModule = getModuleFromPath(elmProgram, moduleName);
   switch maybeModule {
   | Some(module_) => mountHelper(flags, elementId, module_)
   | None => R.Error("Module '" ++ moduleName ++ "' not found.")
