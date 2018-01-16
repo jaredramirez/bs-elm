@@ -31,7 +31,12 @@ module R = Js.Result;
 [@bs.module]
 external elmProgram : ReasonElm.elmProgram = "path/to/elm/Main.elm";
 
-let instance = ReasonElm.mount(elmProgram);
+let instance =
+  ReasonElm.mount(
+    ~flags={"foo": "bar"},
+    ~moduleName="Main.Nested", /* 'moduleName' defaults to "Main" */
+    elmProgram /* Must be last arguement! */
+  );
 
 switch instance {
 | R.Ok(i) => Js.log("Elm is running.")
@@ -52,7 +57,5 @@ Checkout an [example](https://github.com/jaredramirez/reason-elm-example)!
 * [`mount : func`](DOCS.md#mount)
 
 ### Roadmap
-* Support nested elm module
-  * Currently only `Elm.Module` is supported. (`Elm.My.Module` will not work)
 * Convert `Js.t` objects to OCaml records
   * Currently the Elm 'instance & 'ports are `Js.t` objects

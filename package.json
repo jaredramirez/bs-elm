@@ -12,9 +12,15 @@
   "devDependencies": {
     "bs-platform": "^2.1.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "lodash.get": "^4.4.2"
+  },
   "license": "MIT",
-  "keywords": ["reasonml", "bucklescript", "elm"],
+  "keywords": [
+    "reasonml",
+    "bucklescript",
+    "elm"
+  ],
   "author": "Jared Ramirez <jaredramirez@me.com>",
   "repository": {
     "type": "git",
