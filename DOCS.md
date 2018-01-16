@@ -59,7 +59,7 @@ type elmInstanceWithPorts('ports) = {. "ports": 'ports};
 This is the function that takes either [`elmProgram`](DOCS.md#elmProgram) or [`elmProgramWithPorts`](DOCS.md#elmProgram), and options.
 There are a few important things to note with `mount`:
   * If you use any of the labled aruements, `elmProgram` must be the last arguement
-  * The arguement `moduleName` defaults to `"Main"`
+  * The arguement `moduleName` defaults to `"Main"`. If you have a nested module, you can define `moduleName` like `"My.Nested.Module"`
   * If the `elementId` is invalid, the mounting will fail. ReasonElm DOES NOT fallback to fullscreen.
 
 It's type signature is:

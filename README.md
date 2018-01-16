@@ -29,7 +29,7 @@ ecosytem in a (more) typesafe way is pretty exciting, so Reason-Elm was created.
 module R = Js.Result;
 
 [@bs.module]
-external elmProgram : ReasonElm.elmProgram = "path/to/elm/Main.elm";
+external elmProgram : ReasonElm.elmProgram = "path/to/Main.elm";
 
 let instance = ReasonElm.mount(elmProgram);
 
@@ -39,7 +39,7 @@ switch instance {
 };
 ```
 
-Checkout [this example](https://github.com/jaredramirez/reason-elm-example)!
+Checkout [this example](https://github.com/jaredramirez/reason-elm-example) that uses flags and ports!
 
 ### Docs
 * [`elmProgramBase : type`](DOCS.md#elmProgramBase)
@@ -52,9 +52,8 @@ Checkout [this example](https://github.com/jaredramirez/reason-elm-example)!
 * [`mount : func`](DOCS.md#mount)
 
 ### Roadmap
-* Support nested elm modules
-  * Currently only `Elm.Module` is supported. (`Elm.My.Module` is not)
-* Convert `Js.t` objects to OCaml records
-  * Currently the Elm 'instance & 'ports are `Js.t` objects
+* Make interacting with ports nicer
+  * Convert `Js.t` objects to OCaml records?
+  * Subscribe to ports in a pipeline style?
 
 If you have any suggestions or run into any bugs, please open an issue!

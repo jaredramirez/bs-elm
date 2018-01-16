@@ -46,7 +46,7 @@ type elmInPort('data) = {
 type elmOutPort('data) = {. [@bs.meth] "send": 'data => unit};
 
 /* Base type of an Elm program */
-type elmProgramBase('instance) = D.t(elmModule('instance));
+type elmProgramBase('instance);
 
 /* Type of an Elm program */
 type elmProgram = elmProgramBase(elmInstance);
@@ -54,6 +54,12 @@ type elmProgram = elmProgramBase(elmInstance);
 /* Type of an Elm program with ports on the instance */
 type elmProgramWithPorts('ports) =
   elmProgramBase(elmInstanceWithPorts('ports));
+
+/* Used to get modules from elmProgramBase */
+[@bs.module] [@bs.return nullable]
+external getModuleFromPath :
+  (elmProgramBase('instance), string) => option(elmModule('instance)) =
+  "lodash.get";
 
 /* Helper to mounting an Elm program */
 let mountHelper =
@@ -95,9 +101,9 @@ let mount =
       elmProgram: elmProgramBase('instance)
     )
     : R.t('instance, string) => {
-  let maybeModule = D.get(elmProgram, moduleName);
+  let maybeModule = getModuleFromPath(elmProgram, moduleName);
   switch maybeModule {
   | Some(module_) => mountHelper(flags, elementId, module_)
-  | None => R.Error("Module not found.")
+  | None => R.Error("Module '" ++ moduleName ++ "' not found.")
   };
 };
