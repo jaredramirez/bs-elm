@@ -29,9 +29,12 @@ ecosytem in a (more) typesafe way is pretty exciting, so Reason-Elm was created.
 module R = Js.Result;
 
 [@bs.module]
-external elmProgram : ReasonElm.elmProgram = "path/to/Main.elm";
+external elmProgram : ReasonElm.elmProgram = "path/to/App.elm";
 
-let instance = ReasonElm.mount(elmProgram);
+let instance = ReasonElm.mount(
+  ~moduleName="App", /* Defaults to "Main" */
+  elmProgram /* Must be last arguement */
+);
 
 switch instance {
 | R.Ok(i) => Js.log("Elm is running.")
