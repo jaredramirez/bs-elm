@@ -1,6 +1,6 @@
 {
   "name": "reason-elm",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "refmt": 3,
   "sources": "src",
   "package-specs": ["commonjs"]

@@ -1,6 +1,6 @@
 {
   "name": "reason-elm",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -16,11 +16,7 @@
     "lodash.get": "^4.4.2"
   },
   "license": "MIT",
-  "keywords": [
-    "reasonml",
-    "bucklescript",
-    "elm"
-  ],
+  "keywords": ["reasonml", "bucklescript", "elm"],
   "author": "Jared Ramirez <jaredramirez@me.com>",
   "repository": {
     "type": "git",
