@@ -74,9 +74,10 @@ If you have any suggestions or run into any bugs, please open an issue!
   * Convert `Js.t` objects to OCaml records?
   * Subscribe to ports in a pipeline style?
 
-### Changes
+### Change log
 
-* `v1.0.0` ->
+`v1.0.0` ->
+
 * Rename project to `bs-elm`
 * Changed exported module from `ReasonElm` to `Elm`
-* Changed export port types to `portToElm` and `portFromElm`
+* Changed export port types to `elmOutPort` -> `portToElm` and `elmInPort` -> `portFromElm`
