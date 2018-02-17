@@ -77,6 +77,6 @@ If you have any suggestions or run into any bugs, please open an issue!
 * `v1.0.0` ->
  * Rename project to `bs-elm`
  * Changed exported module from `ReasonElm` to `Elm`
- * Changed export port types to 
+ * Changed export port types to `portToElm` and `portFromElm`
 
 
