@@ -59,16 +59,24 @@ Checkout [this example](https://github.com/jaredramirez/bs-elm-example) that use
 * [`elmProgramBase : type`](DOCS.md#elmProgramBase)
 * [`elmProgram : type`](DOCS.md#elmProgram)
 * [`elmProgramWithPorts : type`](DOCS.md#elmProgramWithPorts)
-* [`elmInPort : type`](DOCS.md#elmInPort)
-* [`elmOutPort : type`](DOCS.md#elmOutPort)
+* [`portFromElm : type`](DOCS.md#portFromElm)
+* [`portToElm : type`](DOCS.md#portToElm)
 * [`elmInstance : type`](DOCS.md#elmInstance)
 * [`elmInstanceWithPorts : type`](DOCS.md#elmInstanceWithPorts)
 * [`mount : func`](DOCS.md#mount)
 
+If you have any suggestions or run into any bugs, please open an issue!
+
 ### Roadmap
 
 * Make interacting with ports nicer
+
   * Convert `Js.t` objects to OCaml records?
   * Subscribe to ports in a pipeline style?
 
-If you have any suggestions or run into any bugs, please open an issue!
+### Changes
+
+* `v1.0.0` ->
+* Rename project to `bs-elm`
+* Changed exported module from `ReasonElm` to `Elm`
+* Changed export port types to `portToElm` and `portFromElm`

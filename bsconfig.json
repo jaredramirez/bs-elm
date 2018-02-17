@@ -1,6 +1,6 @@
 {
   "name": "bs-elm",
-  "version": "0.0.6",
+  "version": "1.0.0",
   "refmt": 3,
   "sources": "src",
   "package-specs": ["commonjs"]

@@ -34,14 +34,14 @@ type elmInstance = {.};
 type elmInstanceWithPorts('ports) = {. "ports": 'ports};
 
 /* Type of an Elm port sending data from Elm to Reason */
-type elmInPort('data) = {
+type portFromElm('data) = {
   .
   [@bs.meth] "subscribe": ('data => unit) => unit,
   [@bs.meth] "unsubscribe": unit => unit
 };
 
 /* Type of an Elm port sending data from Reason to Elm */
-type elmOutPort('data) = {. [@bs.meth] "send": 'data => unit};
+type portToElm('data) = {. [@bs.meth] "send": 'data => unit};
 
 /* Base type of an Elm program */
 type elmProgramBase('instance);
