@@ -1,13 +1,13 @@
 module R = Js.Result;
 
 /* Ports Helper Types */
-type elmInPort('data) = {
+type portFromElm('data) = {
   .
   [@bs.meth] "subscribe": ('data => unit) => unit,
   [@bs.meth] "unsubscribe": unit => unit
 };
 
-type elmOutPort('data) = {. [@bs.meth] "send": 'data => unit};
+type portToElm('data) = {. [@bs.meth] "send": 'data => unit};
 
 /* Elm Instance Types */
 type elmInstanceWithPorts('ports) = {. "ports": 'ports};
@@ -28,5 +28,5 @@ let mount:
     ~elementId: string=?,
     ~moduleName: string=?,
     elmProgramBase('instance)
-  )
-  => R.t('instance, string);
+  ) =>
+  R.t('instance, string);
