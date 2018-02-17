@@ -28,7 +28,7 @@ ecosytem in a (more) typesafe way is pretty exciting, so `bs-elm` was created.
 }
 ```
 
-* Use `Elm` (To import Elm directly in Reason take a look at [this webpack config](https://github.com/jaredramirez/bs-elm-example/blob/master/webpack.config.js)):
+* Use `Elm`
 
 ```
 module R = Js.Result;
@@ -46,6 +46,11 @@ switch instance {
 | R.Error(errorMessage) => Js.log(errorMessage)
 };
 ```
+
+To import Elm directly in Reason ->
+
+* Look at this [repo using webpack](https://github.com/jaredramirez/reason-elm-example)
+* Look at this [repo using parcel](https://github.com/splodingsocks/reasonable-app)
 
 Checkout [this example](https://github.com/jaredramirez/bs-elm-example) that uses flags and ports!
 
