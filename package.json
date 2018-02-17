@@ -1,6 +1,6 @@
 {
   "name": "bs-elm",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -16,7 +16,11 @@
     "lodash.get": "^4.4.2"
   },
   "license": "MIT",
-  "keywords": ["reasonml", "bucklescript", "elm"],
+  "keywords": [
+    "reasonml",
+    "bucklescript",
+    "elm"
+  ],
   "author": "Jared Ramirez <jaredramirez@me.com>",
   "repository": {
     "type": "git",
