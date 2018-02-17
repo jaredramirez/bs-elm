@@ -1,7 +1,13 @@
+## MOVED
+
+This project has been moved to [`bs-elm`](https://github.com/jaredramirez/bs-elm)
+
 ## Reason-Elm
+
 > Bindings for mounting and interacting with Elm applications in Reason.
 
 ### Motivation
+
 Writing web applications in Elm is nice. It's type system and enforced architecture
 are just a couple of the really cool things that it offers. The Elm ecosystem is
 pretty small compared to the Javascript(JS) ecosystem, and this is a draw back
@@ -13,10 +19,12 @@ JS interop with Reason is pretty powerful. Having access to the entire JS
 ecosytem in a (more) typesafe way is pretty exciting, so Reason-Elm was created.
 
 ### Getting Started
+
 * Install
   * With yarn: `yarn add reason-elm`
   * With npm: `npm install --save reason-elm`
 * Add `reason-elm` as a dependency in `bsconfig.json`
+
 ```
 {
   ...
@@ -25,6 +33,7 @@ ecosytem in a (more) typesafe way is pretty exciting, so Reason-Elm was created.
 ```
 
 * Use `ReasonElm` (To import Elm directly in Reason take a look at [this webpack config](https://github.com/jaredramirez/reason-elm-example/blob/master/webpack.config.js)):
+
 ```
 module R = Js.Result;
 
@@ -45,6 +54,7 @@ switch instance {
 Checkout [this example](https://github.com/jaredramirez/reason-elm-example) that uses flags and ports!
 
 ### Docs
+
 * [`elmProgramBase : type`](DOCS.md#elmProgramBase)
 * [`elmProgram : type`](DOCS.md#elmProgram)
 * [`elmProgramWithPorts : type`](DOCS.md#elmProgramWithPorts)
@@ -55,6 +65,7 @@ Checkout [this example](https://github.com/jaredramirez/reason-elm-example) that
 * [`mount : func`](DOCS.md#mount)
 
 ### Roadmap
+
 * Make interacting with ports nicer
   * Convert `Js.t` objects to OCaml records?
   * Subscribe to ports in a pipeline style?

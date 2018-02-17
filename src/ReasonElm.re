@@ -20,13 +20,11 @@ external fullscreenWithFlags : (elmModule('instance), 'flags) => 'instance =
   "fullscreen";
 
 /* Function to launch am Elm module in fullscreen mode with flags*/
-[@bs.send]
-external embed : (elmModule('instance), Dom.element) => 'instance = "";
+[@bs.send] external embed : (elmModule('instance), Dom.element) => 'instance = "";
 
 /* Function to launch am Elm module binding to a DOM element mode with flags */
 [@bs.send]
-external embedWithFlags :
-  (elmModule('instance), Dom.element, 'flags) => 'instance =
+external embedWithFlags : (elmModule('instance), Dom.element, 'flags) => 'instance =
   "embed";
 
 /* Intance of Elm program */
@@ -52,8 +50,7 @@ type elmProgramBase('instance);
 type elmProgram = elmProgramBase(elmInstance);
 
 /* Type of an Elm program with ports on the instance */
-type elmProgramWithPorts('ports) =
-  elmProgramBase(elmInstanceWithPorts('ports));
+type elmProgramWithPorts('ports) = elmProgramBase(elmInstanceWithPorts('ports));
 
 /* Used to get modules from elmProgramBase */
 [@bs.module] [@bs.return nullable]
