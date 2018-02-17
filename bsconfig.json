@@ -1,6 +1,6 @@
 {
-  "name": "reason-elm",
-  "version": "0.0.4",
+  "name": "bs-elm",
+  "version": "0.0.6",
   "refmt": 3,
   "sources": "src",
   "package-specs": ["commonjs"]

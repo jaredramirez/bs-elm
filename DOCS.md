@@ -1,4 +1,4 @@
-## Reason-Elm Docs
+## bs-elm docs
 
 <a name="elmProgramBase"></a>
 ### `elmProgramBase('instance) : type`
