@@ -28,7 +28,7 @@ ecosytem in a (more) typesafe way is pretty exciting, so `bs-elm` was created.
 }
 ```
 
-* Use `Elm`
+* Use the `Elm` module in reason
 
 ```
 module R = Js.Result;
