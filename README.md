@@ -65,10 +65,18 @@ Checkout [this example](https://github.com/jaredramirez/bs-elm-example) that use
 * [`elmInstanceWithPorts : type`](DOCS.md#elmInstanceWithPorts)
 * [`mount : func`](DOCS.md#mount)
 
+If you have any suggestions or run into any bugs, please open an issue!
+
 ### Roadmap
 
 * Make interacting with ports nicer
   * Convert `Js.t` objects to OCaml records?
   * Subscribe to ports in a pipeline style?
+  
+### Changes
+* `v1.0.0` ->
+ * Rename project to `bs-elm`
+ * Changed exported module from `ReasonElm` to `Elm`
+ * Changed export port types to 
 
-If you have any suggestions or run into any bugs, please open an issue!
+
