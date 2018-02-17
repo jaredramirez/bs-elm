@@ -1,8 +1,4 @@
-## MOVED
-
-This project has been moved to [`bs-elm`](https://github.com/jaredramirez/bs-elm)
-
-## Reason-Elm
+## bs-elm
 
 > Bindings for mounting and interacting with Elm applications in Reason.
 
@@ -16,31 +12,31 @@ writing regular JS code, which has none of Elm's safety. This is where Reason
 enters the picture. Reason can communicate more direclty with JS with much more
 type safety than vanilla JS. The possibility of writing an Elm app and handling
 JS interop with Reason is pretty powerful. Having access to the entire JS
-ecosytem in a (more) typesafe way is pretty exciting, so Reason-Elm was created.
+ecosytem in a (more) typesafe way is pretty exciting, so `bs-elm` was created.
 
 ### Getting Started
 
 * Install
-  * With yarn: `yarn add reason-elm`
-  * With npm: `npm install --save reason-elm`
-* Add `reason-elm` as a dependency in `bsconfig.json`
+  * With yarn: `yarn add bs-elm`
+  * With npm: `npm install --save bs-elm`
+* Add `bs-elm` as a dependency in `bsconfig.json`
 
 ```
 {
   ...
-  "bs-dependencies": ["reason-elm"]
+  "bs-dependencies": ["bs-elm"]
 }
 ```
 
-* Use `ReasonElm` (To import Elm directly in Reason take a look at [this webpack config](https://github.com/jaredramirez/reason-elm-example/blob/master/webpack.config.js)):
+* Use `Elm` (To import Elm directly in Reason take a look at [this webpack config](https://github.com/jaredramirez/bs-elm-example/blob/master/webpack.config.js)):
 
 ```
 module R = Js.Result;
 
 [@bs.module]
-external elmProgram : ReasonElm.elmProgram = "path/to/App.elm";
+external elmProgram : Elm.elmProgram = "path/to/App.elm";
 
-let instance = ReasonElm.mount(
+let instance = Elm.mount(
   ~moduleName="App", /* Defaults to "Main" */
   elmProgram /* Must be last arguement */
 );
@@ -51,7 +47,7 @@ switch instance {
 };
 ```
 
-Checkout [this example](https://github.com/jaredramirez/reason-elm-example) that uses flags and ports!
+Checkout [this example](https://github.com/jaredramirez/bs-elm-example) that uses flags and ports!
 
 ### Docs
 
