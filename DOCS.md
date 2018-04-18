@@ -26,7 +26,7 @@ the shape of the ports object on the Elm app instance.
 
 ### `portFromElm('data) : type`
 
-Predefined type for a data-in Elm port. It takes the arguement `'data`, which is
+Predefined type for an elm port that gets data **from** Elm. It takes the arguement `'data`, which is
 the type of the arguement passed to the `subscribe` callback.
 It's type signature is:
 
@@ -42,7 +42,7 @@ type portFromElm('data) = {
 
 ### `portToElm('data) : type`
 
-Predefined type for a data-out Elm port. It takes the arguement `'data`, which is
+Predefined type for an elm port that sends data **to** Elm. It takes the arguement `'data`, which is
 the type of the arguement passed to the `subscribe` callback.
 It's type signature is:
 
