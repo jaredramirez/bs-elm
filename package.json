@@ -1,6 +1,6 @@
 {
   "name": "bs-elm",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description":
     "Bindings for mounting and interacting with Elm applications in Reason.",
   "main": "index.js",
@@ -17,7 +17,7 @@
     "lodash.get": "4.4.2"
   },
   "license": "MIT",
-  "keywords": ["reasonml", "bucklescript", "elm"],
+  "keywords": ["reason", "bucklescript", "elm"],
   "author": "Jared Ramirez <jaredramirez@me.com>",
   "homepage": "https://github.com/jaredramirez/bs-elm",
   "repository": {
