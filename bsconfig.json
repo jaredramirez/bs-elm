@@ -4,5 +4,8 @@
   "refmt": 3,
   "suffix": ".bs.js",
   "sources": "src",
-  "package-specs": ["commonjs"]
+  "package-specs": {
+    "module": "commonjs",
+    "in-source": true
+  }
 }
