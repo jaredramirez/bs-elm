@@ -49,7 +49,7 @@ switch instance {
 
 To import Elm directly in Reason ->
 
-* Look at this [repo using webpack](https://github.com/jaredramirez/reason-elm-example)
+* Look at this [repo using webpack](https://github.com/jaredramirez/bs-elm-example)
 * Look at this [repo using parcel](https://github.com/splodingsocks/reasonable-app)
 
 Checkout [this example](https://github.com/jaredramirez/bs-elm-example) that uses flags and ports!
@@ -80,10 +80,12 @@ If you have any suggestions or run into any bugs, please open an issue!
 
 * Compile reason modules in-source
 
+
 `v1.0.1` ->
 
 * Upgrade to bs-platform@3.0.0 (No change in the generated code)
 * Generate files with the suffix `.bs.js` instead of `.js`
+* NOTE: If using webpack this, changes how the project must be built. Please refer to [jaredramirez/bs-elm-example](https://github.com/jaredramirez/bs-elm-example) for an example.
 
 `v1.0.0` ->
 
