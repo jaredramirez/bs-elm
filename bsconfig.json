@@ -1,6 +1,6 @@
 {
   "name": "bs-elm",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "refmt": 3,
   "suffix": ".bs.js",
   "sources": "src",
