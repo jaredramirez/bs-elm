@@ -76,6 +76,15 @@ If you have any suggestions or run into any bugs, please open an issue!
 
 ### Change log
 
+`v1.0.2` ->
+
+* Compile reason modules in-source
+
+`v1.0.1` ->
+
+* Upgrade to bs-platform@3.0.0 (No change in the generated code)
+* Generate files with the suffix `.bs.js` instead of `.js`
+
 `v1.0.0` ->
 
 * Rename project to `bs-elm`
