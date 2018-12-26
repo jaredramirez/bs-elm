@@ -1,10 +1,10 @@
-module R = Js.Result;
+module R = Belt.Result;
 
 /* Ports Helper Types */
 type portFromElm('data) = {
   .
   [@bs.meth] "subscribe": ('data => unit) => unit,
-  [@bs.meth] "unsubscribe": unit => unit
+  [@bs.meth] "unsubscribe": unit => unit,
 };
 
 type portToElm('data) = {. [@bs.meth] "send": 'data => unit};
@@ -19,7 +19,8 @@ type elmProgramBase('instance);
 
 type elmProgram = elmProgramBase(elmInstance);
 
-type elmProgramWithPorts('ports) = elmProgramBase(elmInstanceWithPorts('ports));
+type elmProgramWithPorts('ports) =
+  elmProgramBase(elmInstanceWithPorts('ports));
 
 /* Mount Program */
 let mount:

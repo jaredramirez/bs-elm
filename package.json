@@ -3,7 +3,7 @@
   "version": "1.0.2",
   "description":
     "Bindings for mounting and interacting with Elm applications in Reason.",
-  "main": "index.js",
+  "main": "src/Elm.bs.js",
   "scripts": {
     "bsb": "node_modules/.bin/bsb",
     "build": "yarn bsb -make-world",
@@ -11,7 +11,7 @@
     "clean": "yarn bsb -clean-world"
   },
   "devDependencies": {
-    "bs-platform": "3.0.0"
+    "bs-platform": "4.0.14"
   },
   "dependencies": {
     "lodash.get": "4.4.2"
