@@ -1,6 +1,6 @@
 {
   "name": "bs-elm",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description":
     "Bindings for mounting and interacting with Elm applications in Reason.",
   "main": "src/Elm.bs.js",
