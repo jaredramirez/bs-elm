@@ -76,6 +76,11 @@ If you have any suggestions or run into any bugs, please open an issue!
 
 ### Change log
 
+`v2.0.0` ->
+
+* Drop support for 0.18
+* Add support for 0.19
+
 `v1.0.2` ->
 
 * Compile reason modules in-source
