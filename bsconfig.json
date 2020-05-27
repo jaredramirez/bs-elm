@@ -6,6 +6,6 @@
   "sources": "src",
   "package-specs": {
     "module": "commonjs",
-    "in-source": true
+    "in-source": false
   }
 }

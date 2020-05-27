@@ -16,10 +16,10 @@ ecosytem in a (more) typesafe way is pretty exciting, so `bs-elm` was created.
 
 ### Getting Started
 
-* Install
-  * With yarn: `yarn add bs-elm`
-  * With npm: `npm install --save bs-elm`
-* Add `bs-elm` as a dependency in `bsconfig.json`
+- Install
+  - With yarn: `yarn add bs-elm`
+  - With npm: `npm install --save bs-elm`
+- Add `bs-elm` as a dependency in `bsconfig.json`
 
 ```
 {
@@ -28,72 +28,72 @@ ecosytem in a (more) typesafe way is pretty exciting, so `bs-elm` was created.
 }
 ```
 
-* Use the `Elm` module in reason
+- Use the `Elm` module in reason
 
 ```
 module R = Belt.Result;
 
-[@bs.module]
-external elmProgram : Elm.elmProgram = "path/to/App.elm";
+type ports = {
+  infoForReason: Elm.elmToReasonPort(string),
+  infoForElm: Elm.reasonToElmPort(string),
+};
 
-let instance = Elm.mount(
-  ~moduleName="App", /* Defaults to "Main" */
-  elmProgram /* Must be last arguement */
-);
+[@bs.val] external elmProgram: Elm.elmProgramWithPorts(ports) = "Elm";
+/* Or if using a bundler.
+  [@bs.module]
+  external elmProgram : Elm.elmProgramWithPorts(ports) = "path/to/App.elm";
+*/
 
-switch instance {
-| R.Ok(i) => Js.log("Elm is running.")
-| R.Error(errorMessage) => Js.log(errorMessage)
+type flags = {...};
+
+let resultRuntime =
+  Elm.mount(
+    ~flags={..}, /* Optional, defaults to Nothing */
+    ~moduleName="Other.Main", /* Optional, defaults to "Main" */
+    elmProgram,
+  );
+
+switch (resultRuntime) {
+| R.Ok(runtime) =>
+  runtime.ports.infoForReason.subscribe(info =>
+    runtime.ports.infoForElm.send("You pressed " ++ info)
+  )
+| R.Error(message) => Js.log(message)
 };
 ```
 
-To import Elm directly in Reason ->
-
-* Look at this [repo using webpack](https://github.com/jaredramirez/bs-elm-example)
-* Look at this [repo using parcel](https://github.com/splodingsocks/reasonable-app)
-
-Checkout [this example](https://github.com/jaredramirez/bs-elm-example) that uses flags and ports!
+Checkout `example/` to see this in action!
 
 ### Docs
 
-* [`elmProgramBase : type`](DOCS.md#elmProgramBase)
-* [`elmProgram : type`](DOCS.md#elmProgram)
-* [`elmProgramWithPorts : type`](DOCS.md#elmProgramWithPorts)
-* [`portFromElm : type`](DOCS.md#portFromElm)
-* [`portToElm : type`](DOCS.md#portToElm)
-* [`elmInstance : type`](DOCS.md#elmInstance)
-* [`elmInstanceWithPorts : type`](DOCS.md#elmInstanceWithPorts)
-* [`mount : func`](DOCS.md#mount)
+Checkout the [rei](src/Elm.rei) file for documenation.
 
 If you have any suggestions or run into any bugs, please open an issue!
 
-### Roadmap
-
-* Make interacting with ports nicer
-
-  * Convert `Js.t` objects to OCaml records?
-  * Subscribe to ports in a pipeline style?
-
 ### Change log
+
+`v3.0.0` ->
+
+- Upgrade to bsb 7.3.2
+- Improve interop with new bsb records <-> js object compatability
 
 `v2.0.0` ->
 
-* Drop support for 0.18
-* Add support for 0.19
+- Drop support for 0.18
+- Add support for 0.19
 
 `v1.0.2` ->
 
-* Compile reason modules in-source
-
+- Compile reason modules in-source
 
 `v1.0.1` ->
 
-* Upgrade to bs-platform@3.0.0 (No change in the generated code)
-* Generate files with the suffix `.bs.js` instead of `.js`
-* NOTE: If using webpack this, changes how the project must be built. Please refer to [jaredramirez/bs-elm-example](https://github.com/jaredramirez/bs-elm-example) for an example.
+- Upgrade to bs-platform@3.0.0 (No change in the generated code)
+- Generate files with the suffix `.bs.js` instead of `.js`
+- NOTE: If using webpack this, changes how the project must be built. Please refer to [jaredramirez/bs-elm-example](https://github.com/jaredramirez/bs-elm-example) for an example.
 
 `v1.0.0` ->
 
-* Rename project to `bs-elm`
-* Changed exported module from `ReasonElm` to `Elm`
-* Changed export port types to `elmOutPort` -> `portToElm` and `elmInPort` -> `portFromElm`
+- Rename project to `bs-elm`
+- Changed exported module from `ReasonElm` to `Elm`
+- Changed export port types to `elmOutPort` -> `portToElm` and `elmInPort` -> `portFromElm`

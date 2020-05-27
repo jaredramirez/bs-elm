@@ -1,33 +1,33 @@
-module R = Belt.Result;
+/* Abstract type to represent an Elm program
+     This should not be used directly.
+     Use `elmProgram` or `elmProgramWithPorts` instead.
+   */
+type elmProgramBase('runtime);
 
-/* Ports Helper Types */
-type portFromElm('data) = {
-  .
-  [@bs.meth] "subscribe": ('data => unit) => unit,
-  [@bs.meth] "unsubscribe": unit => unit,
+/* Type to represent an Elm program without ports */
+type elmRuntime = unit;
+type elmProgram = elmProgramBase(elmRuntime);
+
+/* Type to represent an Elm program with ports */
+type elmRuntimeWithPorts('ports) = {ports: 'ports};
+type elmProgramWithPorts('ports) =
+  elmProgramBase(elmRuntimeWithPorts('ports));
+
+/* Type to represent a port to recieve data in Reason from Elm */
+type elmToReasonPort('dataForReason) = {
+  subscribe: ('dataForReason => unit) => unit,
+  unsubscribe: unit => unit,
 };
 
-type portToElm('data) = {. [@bs.meth] "send": 'data => unit};
+/* Type to represent a port to send data to Elm from Reason */
+type reasonToElmPort('dataForElm) = {send: 'dataForElm => unit};
 
-/* Elm Instance Types */
-type elmInstanceWithPorts('ports) = {. "ports": 'ports};
-
-type elmInstance = {.};
-
-/* Elm Program Types */
-type elmProgramBase('instance);
-
-type elmProgram = elmProgramBase(elmInstance);
-
-type elmProgramWithPorts('ports) =
-  elmProgramBase(elmInstanceWithPorts('ports));
-
-/* Mount Program */
+/* Function to mount elm application */
 let mount:
   (
     ~flags: 'flags=?,
     ~elementId: string=?,
     ~moduleName: string=?,
-    elmProgramBase('instance)
+    elmProgramBase('runtime)
   ) =>
-  R.t('instance, string);
+  Belt.Result.t('runtime, string);
