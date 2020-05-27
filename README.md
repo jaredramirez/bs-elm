@@ -62,7 +62,7 @@ switch (resultRuntime) {
 };
 ```
 
-Checkout the [`example/`](src/example)!
+Checkout the [`example/`](example)!
 Checkout this [repo using webpack](https://github.com/jaredramirez/bs-elm-example)!
 
 ### Docs
